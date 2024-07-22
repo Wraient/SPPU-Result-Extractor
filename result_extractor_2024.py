@@ -67,6 +67,10 @@ for index, row in df.iterrows():
 
     if not download_pdf(url, payload, student_name):
         # Handle the case where the download fails, e.g., log the failure
+        print("----------------------------")
+        print(f"Couldn't download the result for {student_name}")
+        print(f"Payload details: \n {payload}")
+        print("----------------------------")
         pass
 
     # time.sleep()
