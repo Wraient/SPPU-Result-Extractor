@@ -38,7 +38,7 @@ def download_pdf(url, payload, student_name):
                 print(f'Saved {student_name}.pdf')
                 return True  # Return True if download is successful
         except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+            print(f"An error occurred: {e}\nretrying...")
             # Retry the request
             continue
     else:
