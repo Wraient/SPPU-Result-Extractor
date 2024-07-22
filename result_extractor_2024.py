@@ -1,9 +1,30 @@
 import pandas as pd
+import os
+
+# Define the folder name
+folder_name = "static" # Static folder is needed while importing fitz for soem reason
+
+# Get the current working directory
+current_directory = os.getcwd()
+
+# Create the full path for the new folder
+folder_path = os.path.join(current_directory, folder_name)
+
+# Check if the folder exists
+if not os.path.exists(folder_path):
+    # Create the folder
+    os.makedirs(folder_path)
+    print(f"Folder '{folder_name}' created at {folder_path}")
+else:
+    print(f"Folder '{folder_name}' already exists at {folder_path}")
+
 import fitz
 import requests
 import time
 from urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+
 
 def download_pdf(url, payload, student_name):
     retry_count = 3  # Number of times to retry the request
@@ -25,7 +46,7 @@ def download_pdf(url, payload, student_name):
         return False  # Return False if download fails after retries
 
 # Load the CSV file into a pandas DataFrame
-df = pd.read_csv('namelist3.csv')
+df = pd.read_csv('namelist.csv')
 
 # Iterate over each row in the DataFrame
 for index, row in df.iterrows():
